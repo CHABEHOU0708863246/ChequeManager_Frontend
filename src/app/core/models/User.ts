@@ -1,0 +1,10 @@
+export interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  isEnabled: boolean;
+  roles: string[];
+  photoUrl?: string;
+}

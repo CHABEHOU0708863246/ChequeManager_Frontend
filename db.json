@@ -1,0 +1,381 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Jean",
+      "lastName": "Kouassi",
+      "email": "jean.kouassi@example.com",
+      "phoneNumber": "+225 07 12 34 56 78",
+      "isEnabled": true,
+      "roles": [
+        "DG"
+      ],
+      "photoUrl": null
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "code": "DG",
+      "roleName": "Directeur Général",
+      "normalizedName": "DIRECTEUR_GENERAL",
+      "isVisible": true
+    },
+    {
+      "id": "2",
+      "code": "COMPTABLE",
+      "roleName": "Comptable",
+      "normalizedName": "COMPTABLE",
+      "isVisible": true
+    }
+  ],
+  "banks": [
+    {
+      "id": "1",
+      "code": "SIB",
+      "name": "Société Ivoirienne de Banque",
+      "fullName": "Société Ivoirienne de Banque",
+      "group": "Groupe Attijariwafa bank",
+      "logoType": "mountains",
+      "primaryColor": "#1E40AF",
+      "secondaryColor": "#3B82F6",
+      "hasWatermark": true,
+      "watermarkText": "SIB"
+    },
+    {
+      "id": "2",
+      "code": "SGCI",
+      "name": "Société Générale Côte d'Ivoire",
+      "fullName": "SOCIETE GENERALE COTE D'IVOIRE",
+      "group": null,
+      "logoType": "square",
+      "primaryColor": "#E60000",
+      "secondaryColor": "#000000",
+      "hasWatermark": true,
+      "watermarkText": "SGCI"
+    },
+    {
+      "id": "3",
+      "code": "ECOBANK",
+      "name": "Ecobank Côte d'Ivoire",
+      "fullName": "Ecobank",
+      "group": "La Banque Panafricaine",
+      "logoType": "circle",
+      "primaryColor": "#005DAA",
+      "secondaryColor": "#87CEEB",
+      "hasWatermark": false,
+      "watermarkText": null
+    },
+    {
+      "id": "4",
+      "code": "BNI",
+      "name": "Banque Nationale d'Investissement",
+      "fullName": "BANQUE NATIONALE D'INVESTISSEMENT",
+      "group": null,
+      "logoType": "text",
+      "primaryColor": "#C41E3A",
+      "secondaryColor": "#FFD700",
+      "hasWatermark": false,
+      "watermarkText": null
+    },
+    {
+      "id": "5",
+      "code": "ATLANTIQUE",
+      "name": "Banque Atlantique",
+      "fullName": "BANQUE ATLANTIQUE",
+      "group": null,
+      "logoType": "emblem",
+      "primaryColor": "#0047AB",
+      "secondaryColor": "#FFFFFF",
+      "hasWatermark": true,
+      "watermarkText": "ATLANTIQUE"
+    }
+  ],
+  "bankAccounts": [
+    {
+      "id": "1",
+      "bankId": "1",
+      "accountHolderName": "SA SUD COMOE CAOUTCHOUC",
+      "codeBank": "CI007",
+      "codeGuichet": "01030",
+      "accountNumber": "052773200100",
+      "ribKey": "10",
+      "fullAccountNumber": "CI007 01030 052773200100 10",
+      "agencyName": "SIB AGENCE CENT PLATEAU",
+      "agencyCode": "181910",
+      "agencyLocation": "ABIDJAN",
+      "accountHolderAddress": {
+        "line1": "BP 1034 ABOISSO",
+        "line2": "VILLAGE D'ADAOU",
+        "city": "ABOISSO",
+        "postalCode": null
+      },
+      "isActive": true
+    },
+    {
+      "id": "2",
+      "bankId": "2",
+      "accountHolderName": "SUD COMOE CAOUTCHOUC",
+      "codeBank": "CI008",
+      "codeGuichet": "12301",
+      "accountNumber": "030141073769",
+      "ribKey": "56",
+      "fullAccountNumber": "CI008 12301 030141073769 56",
+      "agencyName": "ABOISSO",
+      "agencyCode": null,
+      "agencyLocation": "ABOISSO",
+      "accountHolderAddress": {
+        "line1": "BP 1034 VILLAGE D'ADIAOU",
+        "line2": null,
+        "city": "ABOISSO",
+        "postalCode": "BP 247"
+      },
+      "isActive": true
+    },
+    {
+      "id": "3",
+      "bankId": "3",
+      "accountHolderName": "SUD COMOE CAOUTCHOUC",
+      "codeBank": "CI059",
+      "codeGuichet": "12024",
+      "accountNumber": "120147055001",
+      "ribKey": "77",
+      "fullAccountNumber": "CI059 12024 120147055001 77",
+      "agencyName": "ECI AGENCE ABOISSO",
+      "agencyCode": null,
+      "agencyLocation": "Route Principale Face PAI",
+      "accountHolderAddress": {
+        "line1": "BP 1034 Aboisso",
+        "line2": "TEL: +225-21305457",
+        "city": "ABOISSO",
+        "postalCode": null
+      },
+      "referenceInterne": "120147055001",
+      "isActive": true
+    },
+    {
+      "id": "4",
+      "bankId": "4",
+      "accountHolderName": "SUD COMOE CAOUTCHOUC (SCC)",
+      "codeBank": "CI082",
+      "codeGuichet": "01001",
+      "accountNumber": "001119860001",
+      "ribKey": "69",
+      "fullAccountNumber": "CI082 01001 001119860001 69",
+      "agencyName": "AGENCE ABIDJAN",
+      "agencyCode": null,
+      "agencyLocation": "01 BP 670 ABIDJAN 01",
+      "accountHolderAddress": {
+        "line1": "BP 1034 ABOISSO",
+        "line2": null,
+        "city": "ABOISSO",
+        "postalCode": null
+      },
+      "phoneNumbers": [
+        "(225) 20.31.51.00",
+        "20.31.66.00"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "5",
+      "bankId": "5",
+      "accountHolderName": "SUD COMOE CAOUTCHOUC",
+      "codeBank": "CI034",
+      "codeGuichet": "12001",
+      "accountNumber": "013563810004",
+      "ribKey": "26",
+      "fullAccountNumber": "CI034 12001 013563810004 26",
+      "agencyName": "BACI ABOISSO",
+      "agencyCode": null,
+      "agencyLocation": "ABOISSO PLACE DE LA MAIRI",
+      "accountHolderAddress": {
+        "line1": "VILLAGE ADAOU ROUTE ABIDJAN BP",
+        "line2": "225074938054",
+        "city": "ABOISSO",
+        "postalCode": "01 BP522 ABJ01"
+      },
+      "isActive": true
+    }
+  ],
+  "cheques": [
+    {
+      "id": "1",
+      "chequeNumber": "5642651",
+      "serieNumber": null,
+      "bankAccountId": "1",
+      "beneficiaryName": "",
+      "amountInNumbers": 0,
+      "amountInLetters": "",
+      "issueDate": null,
+      "issuePlace": "",
+      "payableAt": "SIB AGENCE CENT PLATEAU",
+      "cmc7Code": "H5642651 H39007C01C30LC4 C52773200100P",
+      "isEndorsable": false,
+      "status": "DRAFT",
+      "createdBy": "1",
+      "createdAt": "2025-01-15T10:30:00Z",
+      "printedAt": null,
+      "voidedAt": null,
+      "voidReason": null,
+      "notes": null,
+      "metadata": {
+        "ipAddress": "192.168.1.100",
+        "deviceInfo": "Chrome 120.0"
+      }
+    },
+    {
+      "id": "2",
+      "chequeNumber": "9547227",
+      "serieNumber": "BA 9547227",
+      "bankAccountId": "2",
+      "beneficiaryName": "",
+      "amountInNumbers": 0,
+      "amountInLetters": "",
+      "issueDate": "2024-08-29",
+      "issuePlace": "ABOISSO",
+      "payableAt": "Payable en Côte d'Ivoire",
+      "cmc7Code": "H9547227H H39008A29C1L554 C30L1A0P3P768P",
+      "isEndorsable": false,
+      "status": "DRAFT",
+      "createdBy": "1",
+      "createdAt": "2024-08-29T08:00:00Z",
+      "printedAt": null,
+      "voidedAt": null,
+      "voidReason": null,
+      "notes": null,
+      "metadata": {
+        "dateDay": "29",
+        "dateMonth": "08",
+        "dateYear": "24"
+      }
+    },
+    {
+      "id": "1763272648019",
+      "chequeNumber": "6652516",
+      "serieNumber": null,
+      "bankAccountId": "1",
+      "beneficiaryName": "DELORS CHABEHOU",
+      "amountInNumbers": 3500000,
+      "amountInLetters": "TROIS MILLIONS CINQ CENTS MILLE FRANCS CFA",
+      "issueDate": "2025-11-16",
+      "issuePlace": "ABIDJAN",
+      "payableAt": "SIB AGENCE CENT PLATEAU",
+      "cmc7Code": "H2740675H CI00701030 05277320010010",
+      "isEndorsable": false,
+      "status": "GENERATED",
+      "createdBy": "1",
+      "createdAt": "2025-11-16T05:57:28.019Z",
+      "printedAt": null,
+      "voidedAt": null,
+      "voidReason": null,
+      "notes": "",
+      "metadata": {
+        "ipAddress": "127.0.0.1",
+        "deviceInfo": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0"
+      }
+    },
+    {
+      "id": "1763272767916",
+      "chequeNumber": "8486421",
+      "serieNumber": null,
+      "bankAccountId": "2",
+      "beneficiaryName": "KONGO FRANCK ",
+      "amountInNumbers": 3500000,
+      "amountInLetters": "TROIS MILLIONS CINQ CENTS MILLE FRANCS CFA",
+      "issueDate": "2025-11-16",
+      "issuePlace": "ABIDJAN",
+      "payableAt": "ABOISSO",
+      "cmc7Code": "H8908622H CI00812301 03014107376956",
+      "isEndorsable": false,
+      "status": "GENERATED",
+      "createdBy": "1",
+      "createdAt": "2025-11-16T05:59:27.916Z",
+      "printedAt": null,
+      "voidedAt": null,
+      "voidReason": null,
+      "notes": null,
+      "metadata": {
+        "ipAddress": "127.0.0.1",
+        "deviceInfo": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0"
+      }
+    },
+    {
+      "id": "1763273472617",
+      "chequeNumber": "8186106",
+      "serieNumber": null,
+      "bankAccountId": "1",
+      "beneficiaryName": "rcrcr'crc'vt(v",
+      "amountInNumbers": 350000000000,
+      "amountInLetters": "TROIS CENT CINQUANTE MILLIARDS FRANCS CFA",
+      "issueDate": "2025-11-16",
+      "issuePlace": "ABIDJAN",
+      "payableAt": "SIB AGENCE CENT PLATEAU",
+      "cmc7Code": "H1215725H CI00701030 05277320010010",
+      "isEndorsable": false,
+      "status": "GENERATED",
+      "createdBy": "1",
+      "createdAt": "2025-11-16T06:11:12.617Z",
+      "printedAt": null,
+      "voidedAt": null,
+      "voidReason": null,
+      "notes": "",
+      "metadata": {
+        "ipAddress": "127.0.0.1",
+        "deviceInfo": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0"
+      }
+    }
+  ],
+  "chequeAuditLogs": [
+    {
+      "id": "1",
+      "chequeId": "1",
+      "action": "CREATED",
+      "userId": "1",
+      "timestamp": "2025-01-15T10:30:00Z",
+      "ipAddress": "192.168.1.100",
+      "deviceInfo": "Chrome 120.0",
+      "oldValues": null,
+      "newValues": {
+        "chequeNumber": "5642651",
+        "status": "DRAFT"
+      }
+    }
+  ],
+  "chequeTemplates": [
+    {
+      "id": "1",
+      "bankId": "1",
+      "templateName": "SIB Standard",
+      "width": 850,
+      "height": 380,
+      "background": "linear-gradient(to bottom, #d8d8d8 0%, #c5c5c5 100%)",
+      "layoutConfig": {
+        "headerHeight": 180,
+        "cmc7Height": 28,
+        "sections": {
+          "header": {
+            "logo": "mountains",
+            "bankName": {
+              "fontSize": 13,
+              "fontWeight": "bold"
+            }
+          },
+          "payez": {
+            "top": 210,
+            "fontSize": 10
+          },
+          "beneficiary": {
+            "top": 240,
+            "fontSize": 10
+          },
+          "amount": {
+            "position": "right",
+            "fontSize": 14
+          }
+        }
+      },
+      "isActive": true
+    }
+  ]
+}
