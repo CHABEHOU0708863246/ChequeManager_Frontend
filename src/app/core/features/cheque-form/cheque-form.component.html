@@ -1,199 +1,98 @@
-<div class="cheque-container">
-  <div class="header">
-    <h1>🏦 Générateur de Chèques</h1>
-    <p class="subtitle">Système de génération automatique de chèques bancaires</p>
+<div class="container">
+  <div class="header-card">
+    <h1>Gestion des Chèques</h1>
+    <p>Saisissez les informations des chèques. Une nouvelle ligne s'ajoute automatiquement.</p>
   </div>
 
-  <!-- Messages de succès/erreur -->
-  <div *ngIf="successMessage" class="alert alert-success">
-    <i class="fa fa-check-circle"></i> {{ successMessage }}
+  <div class="table-wrapper">
+    <table class="cheque-table">
+      <thead>
+        <tr>
+          <th>Formule CHQ</th>
+          <th>Date Chèque</th>
+          <th>Numéro Chèque</th>
+          <th>Banque</th>
+          <th>Code Analytique</th>
+          <th>Libellé Ordre</th>
+          <th>Nature Ordre</th>
+          <th>Date Facture</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of rows; let i = index" [class.even]="i % 2 === 0">
+          <td>
+            <input type="text"
+                   [(ngModel)]="row.formuleChq"
+                   (input)="onInputChange(row)"
+                   placeholder="Ex: 0"
+                   aria-label="Formule CHQ">
+          </td>
+          <td>
+            <input type="date"
+                   [(ngModel)]="row.dateCheque"
+                   (change)="onInputChange(row)"
+                   aria-label="Date Chèque">
+          </td>
+          <td>
+            <input type="text"
+                   [(ngModel)]="row.numeroCheque"
+                   (input)="onInputChange(row)"
+                   placeholder="Ex: 318406"
+                   aria-label="Numéro Chèque">
+          </td>
+          <td>
+            <select [(ngModel)]="row.banque"
+                    (change)="onInputChange(row)"
+                    aria-label="Banque">
+              <option value="">Sélectionner...</option>
+              <option *ngFor="let banque of banques" [value]="banque">{{banque}}</option>
+            </select>
+          </td>
+          <td>
+            <input type="text"
+                   [(ngModel)]="row.codeAnalytique"
+                   (input)="onInputChange(row)"
+                   placeholder="Ex: CHPH02"
+                   aria-label="Code Analytique">
+          </td>
+          <td>
+            <input type="text"
+                   [(ngModel)]="row.libelleOrdre"
+                   (input)="onInputChange(row)"
+                   placeholder="Description..."
+                   aria-label="Libellé Ordre">
+          </td>
+          <td>
+            <input type="text"
+                   [(ngModel)]="row.natureOrdre"
+                   (input)="onInputChange(row)"
+                   placeholder="Ex: REGLEMENT FOURNISSEUR"
+                   aria-label="Nature Ordre">
+          </td>
+          <td>
+            <input type="date"
+                   [(ngModel)]="row.dateFacture"
+                   (change)="onInputChange(row)"
+                   aria-label="Date Facture">
+          </td>
+          <td class="action-cell">
+            <button (click)="deleteRow(row.id)"
+                    [disabled]="rows.length === 1"
+                    class="btn-delete"
+                    aria-label="Supprimer la ligne">
+              🗑️
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <div *ngIf="errorMessage" class="alert alert-error">
-    <i class="fa fa-exclamation-triangle"></i> {{ errorMessage }}
-  </div>
-
-  <div class="content-wrapper">
-    <!-- Formulaire -->
-    <div class="form-section">
-      <h2>📝 Informations du Chèque</h2>
-
-      <form [formGroup]="chequeForm" class="cheque-form">
-        <!-- Sélection Banque -->
-        <div class="form-group">
-          <label for="bankId">
-            <i class="fa fa-university"></i> Banque *
-          </label>
-          <select
-            id="bankId"
-            formControlName="bankId"
-            class="form-control"
-            [class.invalid]="f['bankId'].invalid && f['bankId'].touched">
-            <option value="">Sélectionner une banque</option>
-            <option *ngFor="let bank of banks" [value]="bank.id">
-              {{ bank.name }}
-            </option>
-          </select>
-          <span class="error-message" *ngIf="f['bankId'].invalid && f['bankId'].touched">
-            Veuillez sélectionner une banque
-          </span>
-        </div>
-
-        <!-- Sélection Compte -->
-        <div class="form-group">
-          <label for="bankAccountId">
-            <i class="fa fa-credit-card"></i> Compte Bancaire *
-          </label>
-          <select
-            id="bankAccountId"
-            formControlName="bankAccountId"
-            class="form-control"
-            [class.invalid]="f['bankAccountId'].invalid && f['bankAccountId'].touched"
-            [disabled]="!f['bankId'].value">
-            <option value="">Sélectionner un compte</option>
-            <option *ngFor="let account of filteredAccounts" [value]="account.id">
-              {{ account.fullAccountNumber }} - {{ account.accountHolderName }}
-            </option>
-          </select>
-          <span class="error-message" *ngIf="f['bankAccountId'].invalid && f['bankAccountId'].touched">
-            Veuillez sélectionner un compte
-          </span>
-        </div>
-
-        <!-- Bénéficiaire -->
-        <div class="form-group">
-          <label for="beneficiaryName">
-            <i class="fa fa-user"></i> Bénéficiaire *
-          </label>
-          <input
-            type="text"
-            id="beneficiaryName"
-            formControlName="beneficiaryName"
-            class="form-control"
-            [class.invalid]="f['beneficiaryName'].invalid && f['beneficiaryName'].touched"
-            placeholder="Nom du bénéficiaire">
-          <span class="error-message" *ngIf="f['beneficiaryName'].invalid && f['beneficiaryName'].touched">
-            Veuillez saisir le nom du bénéficiaire (min. 3 caractères)
-          </span>
-        </div>
-
-        <!-- Montant -->
-        <div class="form-group">
-          <label for="amountInNumbers">
-            <i class="fa fa-money-bill-wave"></i> Montant (FCFA) *
-          </label>
-          <input
-            type="number"
-            id="amountInNumbers"
-            formControlName="amountInNumbers"
-            class="form-control"
-            [class.invalid]="f['amountInNumbers'].invalid && f['amountInNumbers'].touched"
-            placeholder="0"
-            min="1">
-          <span class="error-message" *ngIf="f['amountInNumbers'].invalid && f['amountInNumbers'].touched">
-            Veuillez saisir un montant valide
-          </span>
-
-          <!-- Montant en lettres (automatique) -->
-          <div *ngIf="amountInLetters" class="amount-letters">
-            <i class="fa fa-check-circle"></i>
-            <strong>En lettres :</strong> {{ amountInLetters }}
-          </div>
-        </div>
-
-        <!-- Date d'émission -->
-        <div class="form-row">
-          <div class="form-group">
-            <label for="issueDate">
-              <i class="fa fa-calendar"></i> Date d'émission *
-            </label>
-            <input
-              type="date"
-              id="issueDate"
-              formControlName="issueDate"
-              class="form-control"
-              [class.invalid]="f['issueDate'].invalid && f['issueDate'].touched">
-          </div>
-
-          <div class="form-group">
-            <label for="issuePlace">
-              <i class="fa fa-map-marker-alt"></i> Lieu d'émission *
-            </label>
-            <input
-              type="text"
-              id="issuePlace"
-              formControlName="issuePlace"
-              class="form-control"
-              [class.invalid]="f['issuePlace'].invalid && f['issuePlace'].touched"
-              placeholder="ABIDJAN">
-          </div>
-        </div>
-
-        <!-- Notes -->
-        <div class="form-group">
-          <label for="notes">
-            <i class="fa fa-sticky-note"></i> Notes (optionnel)
-          </label>
-          <textarea
-            id="notes"
-            formControlName="notes"
-            class="form-control"
-            rows="3"
-            placeholder="Informations complémentaires..."></textarea>
-        </div>
-
-        <!-- Boutons d'action -->
-        <div class="form-actions">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            (click)="resetForm()"
-            [disabled]="isGenerating">
-            <i class="fa fa-redo"></i> Réinitialiser
-          </button>
-
-          <button
-            type="button"
-            class="btn btn-primary"
-            (click)="onPreviewCheque()"
-            [disabled]="!isFormValid || isGenerating">
-            <i class="fa fa-eye"></i>
-            <span *ngIf="!isGenerating">Prévisualiser</span>
-            <span *ngIf="isGenerating">Génération...</span>
-          </button>
-
-          <!-- <button
-            type="button"
-            class="btn btn-success"
-            (click)="onSaveCheque()"
-            [disabled]="!isFormValid || isGenerating">
-            <i class="fa fa-save"></i>
-            <span *ngIf="!isGenerating">Enregistrer</span>
-            <span *ngIf="isGenerating">Sauvegarde...</span>
-          </button> -->
-        </div>
-      </form>
-    </div>
-
-    <!-- Prévisualisation -->
-    <div class="preview-section" *ngIf="showPreview">
-      <h2>👁️ Prévisualisation du Chèque</h2>
-
-      <div class="cheque-preview">
-        <img
-          [src]="chequePreviewUrl"
-          alt="Aperçu du chèque"
-          class="cheque-image">
-      </div>
-
-      <div class="preview-actions">
-        <button
-          type="button"
-          class="btn btn-download"
-          (click)="onDownloadCheque()">
-          <i class="fa fa-download"></i> Télécharger PNG
-        </button>
-      </div>
-    </div>
+  <div class="footer">
+    <button (click)="addNewRow()" class="btn-add">
+      ➕ Ajouter une ligne
+    </button>
+    <div class="total">Total: {{rows.length}} ligne(s)</div>
   </div>
 </div>
