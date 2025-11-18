@@ -1,3 +1,4 @@
+// src/app/core/features/info-form/info-form.component.scss
 .container {
   min-height: 100vh;
   background-color: #f9fafb;
@@ -10,6 +11,18 @@
     padding: 1.5rem;
     margin-bottom: 1.5rem;
 
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
     h1 {
       font-size: 1.5rem;
       font-weight: bold;
@@ -21,7 +34,91 @@
       color: #6b7280;
       margin: 0;
     }
+
+    .btn-print-nav {
+      padding: 0.75rem 1.5rem;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+
+      &:hover {
+        background: #059669;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      }
+    }
   }
+
+  .search-bar {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+
+  .search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      font-size: 1.2rem;
+      color: #6b7280;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 3rem 0.75rem 3rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: #3b82f6;
+      }
+    }
+
+    .clear-search {
+      position: absolute;
+      right: 1rem;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #dc2626;
+      }
+    }
+  }
+
+  .no-results {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: #fef2f2;
+    border-left: 4px solid #ef4444;
+    color: #991b1b;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+  }
+}
 
   .table-wrapper {
     background: white;
@@ -107,6 +204,13 @@
           }
         }
       }
+
+      .readonly-field {
+  background-color: #f3f4f6 !important;
+  cursor: not-allowed;
+  color: #6b7280;
+  font-weight: 600;
+}
     }
   }
 

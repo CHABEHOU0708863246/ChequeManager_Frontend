@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChequeFormComponent } from './cheque-form.component';
-
-describe('ChequeFormComponent', () => {
-  let component: ChequeFormComponent;
-  let fixture: ComponentFixture<ChequeFormComponent>;
+import { InfoFormComponent } from './info-form.component';
+//
+describe('InfoFormComponent', () => {
+  let component: InfoFormComponent;
+  let fixture: ComponentFixture<InfoFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChequeFormComponent]
+      imports: [InfoFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChequeFormComponent);
+    fixture = TestBed.createComponent(InfoFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,18 +1,24 @@
+// src/app/app.routes.ts
 import { Routes } from '@angular/router';
-import { ChequeFormComponent } from './core/features/cheque-form/cheque-form.component';
+import { InfoFormComponent } from './core/features/info-form/info-form.component';
+import { ChequeImprimComponent } from './core/features/cheque-imprim/cheque-imprim.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/cheque-form',
+    redirectTo: '/info-form',
     pathMatch: 'full'
   },
   {
-    path: 'cheque-form',
-    component: ChequeFormComponent
+    path: 'info-form',
+    component: InfoFormComponent
+  },
+  {
+    path: 'cheque-imprim',
+    component: ChequeImprimComponent
   },
   {
     path: '**',
-    redirectTo: '/cheque-form'
+    redirectTo: '/info-form'
   }
 ];

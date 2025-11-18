@@ -1,0 +1,198 @@
+<!-- src/app/core/features/cheque-imprim/cheque-imprim.component.html -->
+<div class="print-container">
+  <!-- Interface de saisie (non imprimée) -->
+  <div class="no-print input-section">
+    <div class="card">
+      <div class="header-with-back">
+        <button (click)="goBack()" class="btn-back">
+          ← Retour à la saisie
+        </button>
+        <h2>Impression de Chèque</h2>
+      </div>
+
+      <div class="form-group">
+        <label for="formuleChq">ID Formule CHQ :</label>
+        <input
+          type="text"
+          id="formuleChq"
+          [(ngModel)]="formuleChqId"
+          placeholder="Ex: 318413"
+          class="input-field">
+      </div>
+
+      <button (click)="loadChequeData()" class="btn-load">
+        📄 Charger les données
+      </button>
+
+      <!-- Aperçu des données -->
+      <div *ngIf="chequeData" class="data-preview">
+        <h3>📊 Aperçu des données</h3>
+        <div class="data-grid">
+          <div class="data-item">
+            <strong>ID Formule CHQ :</strong> {{ chequeData.formuleChq }}
+          </div>
+          <div class="data-item">
+            <strong>Banque :</strong> {{ chequeData.banque }}
+          </div>
+          <div class="data-item">
+            <strong>Numéro Chèque :</strong> {{ chequeData.numeroCheque }}
+          </div>
+          <div class="data-item">
+            <strong>Bénéficiaire :</strong> {{ chequeData.libelleOrdre }}
+          </div>
+          <div class="data-item">
+            <strong>Montant :</strong> {{ formatMontant(chequeData.montantCheque) }} F CFA
+          </div>
+          <div class="data-item">
+            <strong>En lettres :</strong> {{ montantEnLettres }}
+          </div>
+          <div class="data-item">
+            <strong>Date :</strong> {{ formatDate(chequeData.dateCheque) }}
+          </div>
+          <div class="data-item">
+            <strong>Lieu :</strong> {{ lieu }}
+          </div>
+        </div>
+
+        <!-- Aperçu visuel du chèque -->
+        <div class="cheque-preview-section">
+          <h3>👁️ Aperçu du chèque</h3>
+          <p class="preview-info">Voici comment votre chèque sera imprimé (dimensions réelles: 17.5cm × 8cm)</p>
+
+          <div class="cheque-preview-wrapper">
+            <div class="cheque-preview" [attr.data-bank]="chequeData.banque">
+              <div class="preview-content">
+                <!-- En-tête banque -->
+                <div class="bank-header">
+                  <div class="bank-logo">🏦</div>
+                  <div class="bank-info">
+                    <strong>{{ getCurrentTemplate()?.name || chequeData.banque }}</strong>
+                    <small>Chèque N° {{ chequeData.numeroCheque }}</small>
+                  </div>
+                  <div class="currency">F CFA</div>
+                </div>
+
+                <!-- Bénéficiaire -->
+                <div
+                  class="preview-field beneficiaire"
+                  [style.top]="getCurrentTemplate()!.positions.beneficiaire.top"
+                  [style.left]="getCurrentTemplate()!.positions.beneficiaire.left"
+                  [style.width]="getCurrentTemplate()!.positions.beneficiaire.width">
+                  <label>Bénéficiaire:</label>
+                  <span>{{ chequeData.libelleOrdre }}</span>
+                </div>
+
+                <!-- Montant en lettres -->
+                <div
+                  class="preview-field montant-lettres"
+                  [style.top]="getCurrentTemplate()!.positions.montantLettres.top"
+                  [style.left]="getCurrentTemplate()!.positions.montantLettres.left"
+                  [style.width]="getCurrentTemplate()!.positions.montantLettres.width">
+                  <label>Montant en lettres:</label>
+                  <span>{{ montantEnLettres }}</span>
+                </div>
+
+                <!-- Montant en chiffres -->
+                <div
+                  class="preview-field montant-chiffres"
+                  [style.top]="getCurrentTemplate()!.positions.montantChiffres.top"
+                  [style.right]="getCurrentTemplate()!.positions.montantChiffres.right">
+                  <label>Montant:</label>
+                  <span class="amount">{{ formatMontant(chequeData.montantCheque) }}</span>
+                </div>
+
+                <!-- Date -->
+                <div
+                  class="preview-field date"
+                  [style.top]="getCurrentTemplate()!.positions.date.top"
+                  [style.right]="getCurrentTemplate()!.positions.date.right">
+                  <label>Date:</label>
+                  <span>{{ formatDate(chequeData.dateCheque) }}</span>
+                </div>
+
+                <!-- Lieu -->
+                <div
+                  class="preview-field lieu"
+                  [style.top]="getCurrentTemplate()!.positions.lieu.top"
+                  [style.left]="getCurrentTemplate()!.positions.lieu.left">
+                  <label>Lieu:</label>
+                  <span>{{ lieu }}</span>
+                </div>
+
+                <!-- Zone signature -->
+                <div class="signature-zone">
+                  <small>Signature</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="print-instructions">
+          <h4>📋 Instructions d'impression :</h4>
+          <ol>
+            <li>Vérifiez l'aperçu ci-dessus pour confirmer que les positions sont correctes</li>
+            <li>Placez votre chèque vierge <strong>{{ chequeData.banque }}</strong> dans l'imprimante</li>
+            <li>Assurez-vous que le chèque est bien aligné (bord supérieur gauche)</li>
+            <li>Cliquez sur le bouton "Imprimer le chèque" ci-dessous</li>
+            <li>Dans la fenêtre d'impression, choisissez votre imprimante</li>
+            <li>Vérifiez l'aperçu d'impression une dernière fois</li>
+            <li>Lancez l'impression</li>
+            <li><strong>Signez le chèque après impression</strong></li>
+          </ol>
+        </div>
+
+        <button (click)="print()" class="btn-print">
+          🖨️ Imprimer le chèque
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zone d'impression (17.5cm x 8cm) -->
+  <div class="print-only cheque-area" *ngIf="chequeData && getCurrentTemplate()" [attr.data-bank]="chequeData.banque">
+    <div class="cheque-content">
+      <!-- Bénéficiaire -->
+      <div
+        class="field beneficiaire"
+        [style.top]="getCurrentTemplate()!.positions.beneficiaire.top"
+        [style.left]="getCurrentTemplate()!.positions.beneficiaire.left"
+        [style.width]="getCurrentTemplate()!.positions.beneficiaire.width">
+        {{ chequeData.libelleOrdre }}
+      </div>
+
+      <!-- Montant en lettres -->
+      <div
+        class="field montant-lettres"
+        [style.top]="getCurrentTemplate()!.positions.montantLettres.top"
+        [style.left]="getCurrentTemplate()!.positions.montantLettres.left"
+        [style.width]="getCurrentTemplate()!.positions.montantLettres.width">
+        {{ montantEnLettres }}
+      </div>
+
+      <!-- Montant en chiffres -->
+      <div
+        class="field montant-chiffres"
+        [style.top]="getCurrentTemplate()!.positions.montantChiffres.top"
+        [style.right]="getCurrentTemplate()!.positions.montantChiffres.right">
+        {{ formatMontant(chequeData.montantCheque) }}
+      </div>
+
+      <!-- Date -->
+      <div
+        class="field date"
+        [style.top]="getCurrentTemplate()!.positions.date.top"
+        [style.right]="getCurrentTemplate()!.positions.date.right">
+        {{ formatDate(chequeData.dateCheque) }}
+      </div>
+
+      <!-- Lieu -->
+      <div
+        class="field lieu"
+        [style.top]="getCurrentTemplate()!.positions.lieu.top"
+        [style.left]="getCurrentTemplate()!.positions.lieu.left">
+        {{ lieu }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,53 @@
+<!-- src/app/core/features/info-form/info-form.component.html -->
 <div class="container">
   <div class="header-card">
-    <h1>Gestion des Chèques</h1>
-    <p>Saisissez les informations des chèques. Une nouvelle ligne s'ajoute automatiquement.</p>
+    <!--div class="search-bar">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (input)="filterRows()"
+          placeholder="Rechercher par numéro, banque, bénéficiaire, montant, nature, date..."
+          class="search-input">
+        <button *ngIf="searchTerm" (click)="searchTerm = ''; filterRows()" class="clear-search">✕</button>
+      </div>
+      <div *ngIf="searchTerm && filteredRows.length === 0" class="no-results">
+        Aucun résultat trouvé pour "{{ searchTerm }}"
+      </div>
+    </div-->
+    <div class="header-content">
+      <div>
+        <h1>Gestion des Chèques</h1>
+        <p>Saisissez les informations des chèques. Une nouvelle ligne s'ajoute automatiquement.</p>
+      </div>
+      <div class="button-group">
+        <button (click)="saveData()" class="btn-save">
+          💾 Sauvegarder
+        </button>
+        <button (click)="navigateToImpression()" class="btn-print-nav">
+          🖨️ Aller à l'impression
+        </button>
+      </div>
+    </div>
   </div>
 
   <div class="table-wrapper">
+    <div class="search-bar">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (input)="filterRows()"
+          placeholder="Rechercher par numéro, banque, bénéficiaire, montant, nature, date..."
+          class="search-input">
+        <button *ngIf="searchTerm" (click)="searchTerm = ''; filterRows()" class="clear-search">✕</button>
+      </div>
+      <div *ngIf="searchTerm && filteredRows.length === 0" class="no-results">
+        Aucun résultat trouvé pour "{{ searchTerm }}"
+      </div>
+    </div>
     <table class="cheque-table">
       <thead>
         <tr>
@@ -14,19 +57,20 @@
           <th>Banque</th>
           <th>Code Analytique</th>
           <th>Libellé Ordre</th>
+          <th>Montant Chèque</th>
           <th>Nature Ordre</th>
           <th>Date Facture</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of rows; let i = index" [class.even]="i % 2 === 0">
+        <tr *ngFor="let row of displayedRows; let i = index" [class.even]="i % 2 === 0">
           <td>
             <input type="text"
-                   [(ngModel)]="row.formuleChq"
-                   (input)="onInputChange(row)"
-                   placeholder="Ex: 0"
-                   aria-label="Formule CHQ">
+                  [value]="row.formuleChq"
+                  readonly
+                  aria-label="Formule CHQ"
+                  class="readonly-field">
           </td>
           <td>
             <input type="date"
@@ -60,8 +104,17 @@
             <input type="text"
                    [(ngModel)]="row.libelleOrdre"
                    (input)="onInputChange(row)"
-                   placeholder="Description..."
+                   placeholder="Bénéficiaire..."
                    aria-label="Libellé Ordre">
+          </td>
+          <td>
+            <input type="number"
+                   [(ngModel)]="row.montantCheque"
+                   (input)="onInputChange(row)"
+                   placeholder="Ex: 5379900"
+                   aria-label="Montant Chèque"
+                   min="0"
+                   step="1">
           </td>
           <td>
             <input type="text"
@@ -93,6 +146,11 @@
     <button (click)="addNewRow()" class="btn-add">
       ➕ Ajouter une ligne
     </button>
-    <div class="total">Total: {{rows.length}} ligne(s)</div>
+    <div class="footer-actions">
+      <button (click)="clearAllData()" class="btn-clear">
+        🗑️ Tout effacer
+      </button>
+      <div class="total">Total: {{rows.length}} ligne(s)</div>
+    </div>
   </div>
 </div>
