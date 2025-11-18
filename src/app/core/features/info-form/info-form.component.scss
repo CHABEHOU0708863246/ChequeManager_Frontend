@@ -1,246 +1,248 @@
-// src/app/core/features/info-form/info-form.component.scss
 .container {
-  min-height: 100vh;
-  background-color: #f9fafb;
-  padding: 1.5rem;
+  min-height: 100vh;              // Hauteur minimum plein écran
+  background-color: #f9fafb;      // Fond gris clair
+  padding: 1.5rem;                // Espacement intérieur
 
-  .header-card {
+  .header-card {                  // Carte d'en-tête
     background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;        // Coins arrondis
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); // Ombre légère
     padding: 1.5rem;
     margin-bottom: 1.5rem;
 
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
+    .header-content {             // Contenu en-tête
+      display: flex;              // Flexbox pour alignement
+      justify-content: space-between; // Espacement entre éléments
+      align-items: center;        // Alignement vertical
+      gap: 1rem;                  // Espace entre éléments
 
-      @media (max-width: 768px) {
-        flex-direction: column;
-        align-items: stretch;
+      @media (max-width: 768px) { // Sur mobile
+        flex-direction: column;   // Empile verticalement
+        align-items: stretch;     // Étire éléments
       }
     }
 
-    h1 {
+    h1 {                          // Titre principal
       font-size: 1.5rem;
       font-weight: bold;
-      color: #1f2937;
+      color: #1f2937;             // Gris foncé
       margin: 0 0 0.5rem 0;
     }
 
-    p {
-      color: #6b7280;
-      margin: 0;
-    }
-
-    .btn-print-nav {
+    .btn-print-nav {              // Bouton impression
       padding: 0.75rem 1.5rem;
-      background: #10b981;
+      background: #10b981;        // Vert
       color: white;
       border: none;
       border-radius: 0.5rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
+      cursor: pointer;            // Curseur pointeur
+      transition: all 0.2s;       // Animation douce
 
-      &:hover {
-        background: #059669;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      &:hover {                   // Au survol
+        background: #059669;      // Vert plus foncé
+        transform: translateY(-2px); // Monte légèrement
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); // Ombre
       }
     }
   }
 
-  .search-bar {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-
-  .search-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    .search-icon {
-      position: absolute;
-      left: 1rem;
-      font-size: 1.2rem;
-      color: #6b7280;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 0.75rem 3rem 0.75rem 3rem;
-      border: 2px solid #e5e7eb;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-      transition: border-color 0.2s;
-
-      &:focus {
-        outline: none;
-        border-color: #3b82f6;
-      }
-    }
-
-    .clear-search {
-      position: absolute;
-      right: 1rem;
-      background: #ef4444;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-
-      &:hover {
-        background: #dc2626;
-      }
-    }
-  }
-
-  .no-results {
-    margin-top: 0.75rem;
-    padding: 0.75rem;
-    background: #fef2f2;
-    border-left: 4px solid #ef4444;
-    color: #991b1b;
-    border-radius: 0.25rem;
-    font-size: 0.9rem;
-  }
-}
-
-  .table-wrapper {
+  .search-bar {                   // Barre de recherche
     background: white;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    overflow-x: auto;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
 
-    .cheque-table {
-      width: 100%;
-      border-collapse: collapse;
+    .search-wrapper {             // Conteneur recherche
+      position: relative;         // Pour positionner icône
 
-      thead tr {
-        background-color: #fef08a;
+      .search-icon {              // Icône loupe
+        position: absolute;
+        left: 1rem;               // À gauche
+        font-size: 1.2rem;
+        color: #6b7280;           // Gris
       }
 
-      th {
+      .search-input {             // Champ de recherche
+        width: 100%;
+        padding: 0.75rem 3rem 0.75rem 3rem; // Espace pour icônes
+        border: 2px solid #e5e7eb;
+        border-radius: 0.5rem;
+
+        &:focus {                 // Quand cliqué
+          outline: none;
+          border-color: #3b82f6;  // Bleu
+        }
+      }
+
+      .clear-search {             // Bouton effacer recherche
+        position: absolute;
+        right: 1rem;              // À droite
+        background: #ef4444;      // Rouge
+        color: white;
+        border: none;
+        border-radius: 50%;       // Cercle
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+
+        &:hover {
+          background: #dc2626;    // Rouge plus foncé
+        }
+      }
+    }
+
+    .no-results {                 // Message aucun résultat
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+      background: #fef2f2;        // Rouge clair
+      border-left: 4px solid #ef4444; // Barre rouge
+      color: #991b1b;             // Texte rouge foncé
+    }
+  }
+
+  .table-wrapper {                // Conteneur tableau
+    background: white;
+    border-radius: 0.5rem;
+    overflow-x: auto;             // Scroll horizontal si déborde
+
+    .cheque-table {               // Tableau principal
+      width: 100%;
+      border-collapse: collapse;  // Fusionne bordures
+
+      thead tr {                  // Ligne d'en-tête
+        background-color: #fef08a; // Jaune clair
+      }
+
+      th {                        // Cellules d'en-tête
         border: 1px solid #d1d5db;
         padding: 0.75rem;
         text-align: left;
-        font-size: 0.875rem;
         font-weight: 600;
-        color: #111827;
-        white-space: nowrap;
+        white-space: nowrap;      // Pas de retour ligne
       }
 
-      tbody tr {
-        &.even {
+      tbody tr {                  // Lignes du corps
+        &.even {                  // Lignes paires
           background-color: white;
         }
 
-        &:not(.even) {
-          background-color: #f9fafb;
+        &:not(.even) {            // Lignes impaires
+          background-color: #f9fafb; // Gris clair
         }
 
-        &:hover {
-          background-color: #f3f4f6;
+        &:hover {                 // Au survol
+          background-color: #f3f4f6; // Gris
         }
       }
 
-      td {
+      td {                        // Cellules du corps
         border: 1px solid #d1d5db;
         padding: 0.25rem;
 
-        input, select {
+        input, select {           // Champs dans cellules
           width: 100%;
           padding: 0.375rem 0.5rem;
-          font-size: 0.875rem;
           border: none;
-          border-radius: 0.25rem;
           background: transparent;
 
-          &:focus {
+          &:focus {               // Quand cliqué
             outline: none;
             background: white;
-            box-shadow: 0 0 0 2px #3b82f6;
+            box-shadow: 0 0 0 2px #3b82f6; // Bordure bleue
           }
         }
 
-        select {
+        select {                  // Menu déroulant
           background: white;
           cursor: pointer;
         }
       }
 
-      .action-cell {
+      .action-cell {              // Cellule actions
         text-align: center;
 
-        .btn-delete {
+        .btn-delete {             // Bouton supprimer
           padding: 0.375rem;
           background: none;
           border: none;
           cursor: pointer;
-          border-radius: 0.25rem;
-          transition: background-color 0.2s;
 
-          &:hover:not(:disabled) {
-            background-color: #fef2f2;
+          &:hover:not(:disabled) { // Au survol si actif
+            background-color: #fef2f2; // Rouge clair
           }
 
-          &:disabled {
-            opacity: 0.3;
+          &:disabled {            // Si désactivé
+            opacity: 0.3;         // Transparent
             cursor: not-allowed;
           }
         }
       }
 
-      .readonly-field {
-  background-color: #f3f4f6 !important;
-  cursor: not-allowed;
-  color: #6b7280;
-  font-weight: 600;
-}
+      .readonly-field {           // Champ lecture seule
+        background-color: #f3f4f6 !important; // Gris
+        cursor: not-allowed;
+        color: #6b7280;
+        font-weight: 600;
+      }
     }
   }
 
-  .footer {
+  .footer {                       // Pied de page
     margin-top: 1.5rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; // Espacement
 
-    .btn-add {
+    .btn-add {                    // Bouton ajouter ligne
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.5rem;                // Espace entre icône et texte
       padding: 0.5rem 1rem;
-      background-color: #2563eb;
+      border-radius: 0.5rem;
+      background-color: #2563eb;  // Bleu
       color: white;
       border: none;
-      border-radius: 0.5rem;
       cursor: pointer;
-      font-weight: 500;
-      transition: background-color 0.2s;
 
       &:hover {
-        background-color: #1d4ed8;
+        background-color: #1d4ed8; // Bleu plus foncé
       }
     }
 
-    .total {
+    .total {                      // Compteur lignes
       font-size: 0.875rem;
       color: #6b7280;
     }
   }
+
+  .btn-clear {              // Bouton impression
+      padding: 0.75rem 1.5rem;
+      background: none;        // Vert
+      color: rgb(7, 7, 7);
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;            // Curseur pointeur
+      transition: all 0.2s;       // Animation douce
+
+      &:hover {                   // Au survol
+        background: #c03138;      // Vert plus foncé
+        transform: translateY(-2px); // Monte légèrement
+        box-shadow: 0 4px 12px rgba(155, 69, 69, 0.3); // Ombre
+      }
+    }
+
+    .btn-save {              // Bouton impression
+      padding: 0.75rem 1.5rem;
+      background: none;        // Vert
+      color: rgb(7, 7, 7);
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;            // Curseur pointeur
+      transition: all 0.2s;       // Animation douce
+
+      &:hover {                   // Au survol
+        background: #959955;
+        transform: translateY(-2px); // Monte légèrement
+        box-shadow: 0 4px 12px rgba(182, 188, 59, 0.3); // Ombre
+      }
+    }
 }

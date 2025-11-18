@@ -1,24 +1,22 @@
-// src/app/core/features/cheque-imprim/cheque-imprim.component.scss
-
-// Variables
-$cheque-width: 17.5cm;
-$cheque-height: 8cm;
+// Variables globales
+$cheque-width: 17.5cm;               // Largeur standard chèque
+$cheque-height: 8cm;                 // Hauteur standard chèque
 
 .print-container {
-  min-height: 100vh;
-  background-color: #f5f5f5;
+  min-height: 100vh;                 // Hauteur minimum plein écran
+  background-color: #f5f5f5;         // Fond gris clair
 }
 
-// Section non imprimée
+// Section visible à l'écran (non imprimée)
 .no-print {
-  padding: 2rem;
+  padding: 2rem;                     // Espacement global
 
   .input-section {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 800px;                // Largeur maximum
+    margin: 0 auto;                  // Centrage horizontal
   }
 
-  .card {
+  .card {                            // Carte principale
     background: white;
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -27,58 +25,57 @@ $cheque-height: 8cm;
     .header-with-back {
       margin-bottom: 1.5rem;
 
-      .btn-back {
+      .btn-back {                    // Bouton retour
         margin-bottom: 1rem;
         padding: 0.5rem 1rem;
-        background: #6b7280;
+        background: #6b7280;         // Gris
         color: white;
         border: none;
         border-radius: 0.5rem;
         cursor: pointer;
-        font-weight: 500;
         transition: all 0.2s;
 
         &:hover {
-          background: #4b5563;
-          transform: translateX(-2px);
+          background: #4b5563;       // Gris plus foncé
+          transform: translateX(-2px); // Décale à gauche
         }
       }
     }
 
-    h2 {
+    h2 {                             // Titre principal
       margin: 0 0 1.5rem 0;
       color: #1f2937;
       font-size: 1.75rem;
       font-weight: 700;
     }
 
-    h3 {
+    h3 {                             // Sous-titre
       margin: 1.5rem 0 1rem 0;
       color: #374151;
       font-size: 1.25rem;
       font-weight: 600;
     }
 
-    h4 {
+    h4 {                             // Petit titre
       margin: 0 0 0.75rem 0;
-      color: #059669;
+      color: #059669;                // Vert
       font-size: 1.1rem;
       font-weight: 600;
     }
   }
 
-  .form-group {
+  .form-group {                      // Groupe champ formulaire
     margin-bottom: 1.5rem;
 
     label {
-      display: block;
+      display: block;                // Prend toute largeur
       margin-bottom: 0.5rem;
       color: #374151;
       font-weight: 500;
       font-size: 0.95rem;
     }
 
-    .input-field {
+    .input-field {                   // Champ de saisie
       width: 100%;
       padding: 0.75rem 1rem;
       border: 2px solid #d1d5db;
@@ -86,14 +83,14 @@ $cheque-height: 8cm;
       font-size: 1rem;
       transition: border-color 0.2s;
 
-      &:focus {
+      &:focus {                      // Quand actif
         outline: none;
-        border-color: #3b82f6;
+        border-color: #3b82f6;       // Bordure bleue
       }
     }
   }
 
-  .btn-load, .btn-print {
+  .btn-load, .btn-print {            // Boutons d'action
     padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 0.5rem;
@@ -103,93 +100,93 @@ $cheque-height: 8cm;
     transition: all 0.2s;
   }
 
-  .btn-load {
-    background: #3b82f6;
+  .btn-load {                        // Bouton charger
+    background: #3b82f6;             // Bleu
     color: white;
 
     &:hover {
-      background: #2563eb;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+      background: #2563eb;           // Bleu plus foncé
+      transform: translateY(-1px);   // Monte légèrement
+      box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3); // Ombre bleue
     }
   }
 
-  .btn-print {
-    background: #10b981;
+  .btn-print {                       // Bouton imprimer
+    background: #10b981;             // Vert
     color: white;
-    width: 100%;
+    width: 100%;                     // Toute largeur
     margin-top: 1rem;
     font-size: 1.1rem;
 
     &:hover {
-      background: #059669;
+      background: #059669;           // Vert plus foncé
       transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3); // Ombre verte
     }
   }
 
-  .data-preview {
+  .data-preview {                    // Section aperçu données
     margin-top: 2rem;
     padding: 1.5rem;
-    background: #f9fafb;
+    background: #f9fafb;             // Fond gris clair
     border-radius: 0.5rem;
     border: 1px solid #e5e7eb;
   }
 
-  .data-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+  .data-grid {                       // Grille données
+    display: grid;                   // Système grille CSS
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); // Colonnes auto-adaptatives
+    gap: 1rem;                       // Espacement entre cellules
     margin-bottom: 1rem;
   }
 
-  .data-item {
+  .data-item {                       // Élément de donnée
     padding: 0.75rem;
     background: white;
     border-radius: 0.375rem;
     font-size: 0.9rem;
 
-    strong {
+    strong {                         // Label
       color: #6b7280;
       font-weight: 600;
-      display: block;
+      display: block;                // Prend toute largeur
       margin-bottom: 0.25rem;
       font-size: 0.85rem;
     }
   }
 
-  .print-instructions {
+  .print-instructions {              // Bloc instructions
     margin: 1.5rem 0;
     padding: 1rem;
-    background: #ecfdf5;
-    border-left: 4px solid #10b981;
+    background: #ecfdf5;             // Vert très clair
+    border-left: 4px solid #10b981;  // Barre verte à gauche
     border-radius: 0.375rem;
 
-    ol {
+    ol {                             // Liste ordonnée
       margin: 0.5rem 0 0 1.5rem;
       padding: 0;
 
       li {
         margin-bottom: 0.5rem;
         color: #374151;
-        line-height: 1.6;
+        line-height: 1.6;            // Interligne
 
         strong {
-          color: #059669;
+          color: #059669;            // Texte important en vert
         }
       }
     }
   }
 
-  .cheque-preview-section {
+  .cheque-preview-section {          // Section aperçu chèque
     margin: 2rem 0;
     padding: 1.5rem;
-    background: #f0f9ff;
+    background: #f0f9ff;             // Bleu très clair
     border-radius: 0.5rem;
-    border: 2px solid #3b82f6;
+    border: 2px solid #3b82f6;       // Bordure bleue
 
     h3 {
-      color: #1e40af;
+      color: #1e40af;                // Bleu foncé
       margin-bottom: 0.5rem;
     }
 
@@ -199,61 +196,61 @@ $cheque-height: 8cm;
       margin-bottom: 1rem;
     }
 
-    .cheque-preview-wrapper {
+    .cheque-preview-wrapper {        // Conteneur aperçu
       display: flex;
-      justify-content: center;
+      justify-content: center;       // Centre horizontalement
       padding: 1rem;
       background: white;
       border-radius: 0.5rem;
-      overflow-x: auto;
+      overflow-x: auto;              // Scroll horizontal si nécessaire
     }
 
-    .cheque-preview {
-      width: 700px;
-      height: 320px;
-      background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+    .cheque-preview {                // Aperçu visuel chèque
+      width: 700px;                  // Largeur fixe
+      height: 320px;                 // Hauteur fixe
+      background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%); // Dégradé gris
       border: 2px solid #9ca3af;
       border-radius: 0.5rem;
-      position: relative;
+      position: relative;            // Pour positionner enfants
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transform: scale(0.95);
-      transform-origin: center;
+      transform: scale(0.95);        // Réduit légèrement
+      transform-origin: center;      // Centre de transformation
 
-      .preview-content {
+      .preview-content {             // Contenu aperçu
         position: relative;
         width: 100%;
         height: 100%;
         padding: 1rem;
 
-        .bank-header {
+        .bank-header {               // En-tête banque
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding-bottom: 0.5rem;
-          border-bottom: 2px solid #d1d5db;
+          border-bottom: 2px solid #d1d5db; // Ligne séparation
           margin-bottom: 1rem;
 
-          .bank-logo {
+          .bank-logo {               // Logo banque
             font-size: 2rem;
           }
 
-          .bank-info {
-            flex: 1;
+          .bank-info {               // Info banque
+            flex: 1;                 // Prend espace restant
             margin-left: 1rem;
 
-            strong {
+            strong {                 // Nom banque
               display: block;
               font-size: 1rem;
               color: #1f2937;
             }
 
-            small {
+            small {                  // Info secondaire
               color: #6b7280;
               font-size: 0.75rem;
             }
           }
 
-          .currency {
+          .currency {                // Devise
             font-weight: bold;
             font-size: 1.1rem;
             color: #374151;
@@ -263,67 +260,67 @@ $cheque-height: 8cm;
           }
         }
 
-        .preview-field {
-          position: absolute;
+        .preview-field {             // Champ aperçu
+          position: absolute;        // Positionnement absolu (coordonnées)
           font-size: 0.7rem;
-          border: 1px dashed #3b82f6;
-          background: rgba(59, 130, 246, 0.05);
+          border: 1px dashed #3b82f6; // Bordure pointillée bleue
+          background: rgba(59, 130, 246, 0.05); // Fond bleu transparent
           padding: 0.25rem 0.5rem;
           border-radius: 0.25rem;
 
-          label {
+          label {                    // Label champ
             display: block;
             font-size: 0.6rem;
             color: #3b82f6;
             font-weight: 600;
             margin-bottom: 0.15rem;
-            text-transform: uppercase;
+            text-transform: uppercase; // Majuscules
           }
 
-          span {
+          span {                     // Valeur champ
             display: block;
             color: #1f2937;
             font-weight: 600;
-            font-family: 'Courier New', monospace;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-family: 'Courier New', monospace; // Police machine à écrire
+            white-space: nowrap;     // Pas de retour ligne
+            overflow: hidden;        // Cache débordement
+            text-overflow: ellipsis; // Ajoute "..." si trop long
           }
 
-          &.beneficiaire {
+          &.beneficiaire {           // Champ bénéficiaire
             max-width: 230px;
           }
 
-          &.montant-lettres {
+          &.montant-lettres {        // Champ montant lettres
             max-width: 420px;
-            white-space: normal;
+            white-space: normal;     // Autorise retour ligne
             line-height: 1.3;
           }
 
-          &.montant-chiffres {
+          &.montant-chiffres {       // Champ montant chiffres
             .amount {
-              font-size: 1.1em;
-              color: #059669;
-              font-weight: 700;
+              font-size: 1.1em;      // Plus grand
+              color: #059669;        // Vert
+              font-weight: 700;      // Gras
             }
           }
 
-          &.date, &.lieu {
+          &.date, &.lieu {           // Champs date et lieu
             min-width: 100px;
           }
         }
 
-        .signature-zone {
+        .signature-zone {            // Zone signature
           position: absolute;
-          bottom: 1rem;
-          right: 1rem;
+          bottom: 1rem;              // En bas
+          right: 1rem;               // À droite
           width: 150px;
           height: 60px;
-          border: 1px dashed #9ca3af;
+          border: 1px dashed #9ca3af; // Bordure pointillée
           border-radius: 0.25rem;
           display: flex;
-          align-items: flex-end;
-          justify-content: center;
+          align-items: flex-end;     // Aligne en bas
+          justify-content: center;   // Centre horizontalement
           padding-bottom: 0.25rem;
 
           small {
@@ -336,51 +333,51 @@ $cheque-height: 8cm;
   }
 }
 
-// Zone d'impression
+// Zone visible seulement à l'impression
 .print-only {
-  display: none;
+  display: none;                     // Caché par défaut
 }
 
-.cheque-area {
-  width: $cheque-width;
+.cheque-area {                       // Zone chèque réelle
+  width: $cheque-width;              // Utilise variable SCSS
   height: $cheque-height;
   position: relative;
-  background: transparent;
-  margin: 0 auto;
-  page-break-after: always;
+  background: transparent;           // Fond transparent (pour imprimante)
+  margin: 0 auto;                    // Centre
+  page-break-after: always;          // Force nouvelle page après
 }
 
-.cheque-content {
+.cheque-content {                    // Contenu chèque
   position: relative;
   width: 100%;
   height: 100%;
 
-  .field {
-    position: absolute;
-    font-family: 'Courier New', monospace;
-    font-size: 11pt;
+  .field {                           // Champ sur chèque
+    position: absolute;              // Position absolue (coordonnées exactes)
+    font-family: 'Courier New', monospace; // Police uniforme
+    font-size: 11pt;                 // Taille en points (pour impression)
     font-weight: 600;
-    color: #000;
-    text-transform: uppercase;
-    white-space: nowrap;
+    color: #000;                     // Noir pur
+    text-transform: uppercase;       // Majuscules
+    white-space: nowrap;             // Une seule ligne
   }
 
-  .beneficiaire {
+  .beneficiaire {                    // Spécifique bénéficiaire
     font-size: 10pt;
     max-width: 6cm;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .montant-lettres {
+  .montant-lettres {                 // Spécifique montant lettres
     font-size: 9pt;
     line-height: 1.2;
     max-width: 11cm;
   }
 
-  .montant-chiffres {
+  .montant-chiffres {                // Spécifique montant chiffres
     font-size: 12pt;
-    font-weight: 700;
+    font-weight: 700;                // Extra gras
   }
 
   .date {
@@ -392,9 +389,9 @@ $cheque-height: 8cm;
   }
 }
 
-// Styles d'impression
+// Règles spécifiques pour impression
 @media print {
-  * {
+  * {                                // Tous éléments
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -405,11 +402,11 @@ $cheque-height: 8cm;
     padding: 0;
   }
 
-  .no-print {
-    display: none !important;
+  .no-print {                        // Cache interface
+    display: none !important;        // !important force la règle
   }
 
-  .print-only {
+  .print-only {                      // Affiche zone impression
     display: block !important;
   }
 
@@ -426,26 +423,25 @@ $cheque-height: 8cm;
     padding: 0;
     page-break-after: always;
 
-    // Assure que le chèque s'imprime exactement à la bonne taille
-    @page {
-      size: $cheque-width $cheque-height;
-      margin: 0;
+    @page {                          // Configuration page impression
+      size: $cheque-width $cheque-height; // Taille personnalisée
+      margin: 0;                     // Pas de marges
     }
   }
 
   .cheque-content {
     .field {
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact; // Force couleurs exactes (webkit)
+      print-color-adjust: exact;   // Force couleurs exactes (standard)
     }
   }
 }
 
-// Ajustements pour différentes banques
+// Ajustements par banque
 .cheque-area {
-  &[data-bank="BNI"] {
+  &[data-bank="BNI"] {               // Si attribut data-bank="BNI"
     .montant-lettres {
-      font-size: 8.5pt;
+      font-size: 8.5pt;              // Taille spécifique BNI
     }
   }
 
